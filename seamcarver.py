@@ -55,17 +55,17 @@ class SeamCarver(Picture):
         width = Picture.width(self)
         height = Picture.height(self)
 
-        # Initialize a 2D table to store minimum energy values
+        # Initialize a 2D matrix to store minimum energy values
         energyMatrix = [[0] * height for _ in range(width)]
 
-        # Initialize the first column of the table with the energy values of the top row
+        # Initialize the first column of the matrix with the energy values of the top row
         for i in range(width):
             energyMatrix[i][0] = self.energy(i, 0)
 
-        # Populate the rest of the table using dynamic programming
+        # Populate the rest of the matrix using dynamic programming
         for j in range(1, height):
             for i in range(width):
-                # Handle boundary cases
+                # Handle boundary cases and everything in between
                 if i == 0:
                     energyMatrix[i][j] = self.energy(i, j) + min(energyMatrix[i][j - 1], energyMatrix[i + 1][j - 1])
                 elif i == width - 1:
@@ -107,7 +107,7 @@ class SeamCarver(Picture):
                 minIndex = minIndexTemp
             verticalSeam.append(minIndex)
 
-        return verticalSeam[::-1]
+        return verticalSeam[::-1] # Reverse since verticalSeam was populated backwards
    
     def find_horizontal_seam(self) -> list[int]:        ##list of pixels with least energy (1 per column[y-value only])
         '''
@@ -117,17 +117,17 @@ class SeamCarver(Picture):
         width = Picture.width(self)
         height = Picture.height(self)
 
-        # Initialize a 2D table to store minimum energy values
+        # Initialize a 2D matrix to store minimum energy values
         energyMatrix = [[0] * width for _ in range(height)]
 
-        # Initialize the first row of the table with the energy values of the leftmost column
+        # Initialize the first row of the matrix with the energy values of the leftmost column
         for j in range(height):
             energyMatrix[j][0] = self.energy(0, j)
 
-        # Populate the rest of the table using dynamic programming
+        # Populate the rest of the matrix using dynamic programming
         for i in range(1, width):
             for j in range(height):
-                # Handle boundary cases
+                # Handle boundary cases and everything in between
                 if j == 0:
                     energyMatrix[j][i] = self.energy(i, j) + min(energyMatrix[j][i - 1], energyMatrix[j + 1][i - 1])
                 elif j == height - 1:
@@ -143,7 +143,7 @@ class SeamCarver(Picture):
                 minimum = energyMatrix[j][width-1]
                 minIndex = j
 
-        # Horizontal Seam Finding
+        # Horizontal Seam Finding, similar logic to Vertical Seam
         horizontalSeam = [minIndex]
 
         for i in range(width - 1, 0, -1):
@@ -214,4 +214,3 @@ class SeamError(Exception):
 
 class IndexError(Exception):
     pass
-
