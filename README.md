@@ -14,7 +14,7 @@ This project implements **seam carving using Dynamic Programming** in Python. It
 
 ### 📥 1. Clone the Repository  
 ```sh
-git clone https://github.com/yourusername/seam-carving.git
+git clone https://github.com/astrea25/Seam-Carving.git
 cd seam-carving
 ```
 
