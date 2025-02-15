@@ -110,7 +110,7 @@ class SeamCarverGui(QMainWindow):
         super().__init__()
         self.threadpool = QThreadPool()
 
-        self.setWindowTitle('CSCI 30 Seam Carving')
+        self.setWindowTitle('Seam Carving')
         self.setFixedSize(540, 150)
         centralWidget = QWidget(self)
         self.setCentralWidget(centralWidget)
