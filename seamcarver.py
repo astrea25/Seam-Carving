@@ -4,7 +4,6 @@ from math import sqrt
 from picture import Picture
 
 class SeamCarver(Picture):
-    ## TO-DO: fill in the methods below
     def energy(self, i: int, j: int) -> float:
         if (i > Picture.width(self)-1 or i < 0) or (j > Picture.height(self)-1 or j < 0):
             raise IndexError(Exception)
